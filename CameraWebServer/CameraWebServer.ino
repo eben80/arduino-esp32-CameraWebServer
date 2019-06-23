@@ -33,6 +33,7 @@
 const char* ssid = "";
 const char* password = "";
 
+//Define LED Flash pin
 #define ledPin 4
 
 #define PART_BOUNDARY "123456789000000000000987654321"
@@ -168,6 +169,7 @@ static esp_err_t stream_handler(httpd_req_t *req) {
   return res;
 }
 
+// Handler for night URI
 static esp_err_t night_handler(httpd_req_t *req) {
   camera_fb_t * fb = NULL;
   esp_err_t res = ESP_OK;
@@ -256,6 +258,7 @@ void startCameraServer() {
   }
 }
 
+//LED blinking function
 void blink() {
   digitalWrite (ledPin, HIGH);  // turn on the LED
   delay(50); // wait for half a second or 500 milliseconds
@@ -316,7 +319,8 @@ void setup() {
   }
   Serial.println("");
   Serial.println("WiFi connected");
-  //Blink connected
+  
+  //Blink LED when WIFI connected
   blink();
 
   // Start streaming web server
